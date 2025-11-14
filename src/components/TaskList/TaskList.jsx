@@ -1,21 +1,18 @@
 import './taskList.css'
 import Task from '../Task/Task';
+import { useTasks } from '../../context/taskContext';
 
-function TaskList({tasks, markTaskAsCompleted, deleteTask}) { 
-    
+function TaskList() { 
+    const { filteredTasks } = useTasks();
+
     return(
         <>
-            {tasks.length === 0 ? (
+            {filteredTasks.length === 0 ? (
                 <p className="no-results-container">No hay tareas</p>
             ) : (
                 <ul className="task-list">
-                    {tasks.map(item => (
-                        <Task
-                            key={item.id}
-                            item={item}
-                            markTaskAsCompleted={markTaskAsCompleted}
-                            deleteTask={deleteTask}
-                        />
+                    {filteredTasks.map(item => (
+                        <Task key={item.id} task={item} />
                     ))}
                 </ul>
             )}

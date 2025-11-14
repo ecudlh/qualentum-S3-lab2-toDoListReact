@@ -1,24 +1,27 @@
 import './FilterBtn.css';
+import { useTasks } from '../../context/taskContext';
 
-function FilterBtn({currentFilter, setFilter}) {
+function FilterBtn() {
+    const { filter, setFilter } = useTasks();
+
     return(
         <div className="filter-btn-container">
             <button 
-                className={`btn-all ${currentFilter === 'all' ? 'active' : ''}`}
+                className={`btn-all ${filter === 'all' ? 'active' : ''}`}
                 onClick={() => setFilter('all')}
             >
                 Todas
             </button>
 
             <button 
-                className={`btn-complete ${currentFilter === 'completed' ? 'active' : ''}`}
+                className={`btn-complete ${filter  === 'completed' ? 'active' : ''}`}
                 onClick={() => setFilter('completed')}
             >
                 Completadas
             </button>
 
             <button 
-                className={`btn-pending ${currentFilter === 'pending' ? 'active' : ''}`}
+                className={`btn-pending ${filter  === 'pending' ? 'active' : ''}`}
                 onClick={() => setFilter('pending')}
             >
                 Pendientes
