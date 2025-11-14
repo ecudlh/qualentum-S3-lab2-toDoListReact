@@ -1,0 +1,49 @@
+.filter-btn-container {
+    display: flex;            
+    justify-content: space-between; 
+    gap: 10px;               
+    margin: 20px 0;          
+    max-width: 420px;
+    margin: auto;            
+}
+
+.filter-btn-container button {
+    flex: 1;                  
+    padding: 10px 0;          
+    border: none;             
+    border-radius: 8px;       
+    background-color: #3498db; 
+    color: white;             
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.filter-btn-container button:hover {
+    background-color: #2980b9; 
+}
+
+
+.btn-all {
+    background-color: #3498db;
+}
+
+.btn-complete {
+    background-color: #2ecc71;
+}
+
+.btn-pending {
+    background-color: #e67e22;
+}
+
+.btn-all:hover {
+    background-color: #2980b9;
+}
+
+.btn-complete:hover {
+    background-color: #27ae60;
+}
+
+.btn-pending:hover {
+    background-color: #d35400;
+}
