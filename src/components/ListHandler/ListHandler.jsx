@@ -5,36 +5,15 @@ import FilterBtn from '../FilterBtn/FilterBtn';
 
 import { useState } from 'react';
 import { useReducer } from 'react';
-
-function tasksReducer(tasks, action) {
-    switch (action.type) {
-        case 'added': {
-            return [...tasks, action.task];
-        }
-
-        case 'deleted': {
-            return tasks.filter((task) => task.id !== action.id)  
-        }
-
-        case 'completed': {
-            return tasks.map(task =>
-                task.id === action.id
-                    ? { ...task, completed: !task.completed }
-                    : task
-            );
-        }
-
-        default: {
-            throw Error('Unknown action: ' + action.type);
-        }
-    } 
-}
+import tasksReducer from '../taskreducer.js';
+import { useRef } from 'react';
 
 function ListHandler() {
     // const [tasks, setTasks] = useState([])
     const [tasks, dispatch] = useReducer(tasksReducer, []);
     const [taskName, setTaskName] = useState('');
     const [filter, setFilter] = useState('all');
+    const inputRef = useRef(null);
 
     // const addTask = () => {
     //     const text = taskName.trim();
@@ -80,6 +59,7 @@ function ListHandler() {
         });
 
         setTaskName('');
+        inputRef.current.focus();
     }
 
     function deleteTask(id) {
@@ -112,7 +92,8 @@ function ListHandler() {
                     placeholder="Añade una tarea" 
                     id="search-input"
                     value={taskName}
-                    onChange={(e) => setTaskName(e.target.value)} />
+                    onChange={(e) => setTaskName(e.target.value)} 
+                    ref={inputRef}/>
                 <button className="btn-list" onClick={() => addTask(taskName)}>Añadir</button>
             </div>
 
